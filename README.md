@@ -627,3 +627,4 @@ Skills 安装到 `.claude/skills/` 后，Cursor 启动时会自动发现并提�
 | 论文概念图 / 示意图 / 框架图 | canvas-design | 图的用途与大致元素（如三阶段 pipeline、方法对比） | 「帮我画一个我们方法的整体框架图，三块：数据、训练、推理」「做一张方法对比的示意图，左边传统方法，右边我们的」 | design philosophy (.md) + 可下载的 .pdf 或 .png，可插入 LaTeX 并配合 20-ml-paper-writing 写 caption |
 | 改图的风格或细节 | canvas-design | 对已有图的修改意见 | 「背景改成浅灰」「左边块加大一点」「不要那么多字，只保留标签」 | 按意见调整后的新版图说明，再导出 .pdf/.png 供替换进论文 |
 
+[![Star History Chart](https://api.star-history.com/svg?repos=Leey21/awesome-ai-research-writing&type=Date)](https://star-history.com/Leey21/awesome-ai-research-writing&Date)
