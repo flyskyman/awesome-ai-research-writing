@@ -11,7 +11,8 @@
 我们调研了 [**MSRA**](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia-zh-cn/)、[**Seed**](https://seed.bytedance.com/zh/)、[**SH AI Lab**](https://www.shlab.org.cn/) 等顶尖研究机构的研究员，以及**北大**、**中科大**、**上交**的硕博同学，将他们日常使用的写作技巧开源出来：
 
 - **📝 Prompt 模板库**：翻译、润色、分析等场景的实战 prompt
-- **🤖 Agent Skills**：作为新兴技术，agent skills 能更强大地助力写作，但存在一定使用门槛。我们提供接地气的使用教程，并抽取了写作相关的核心 skills，让你快速上手
+- **🤖 Agent Skills**：作为新兴技术，agent skills 能更强大地助力写作，但存在一定使用门槛。我们提供接地气的使用教程，并抽取了写作相关的核心 skills，让你快速上手。
+- **🎉 News**：我们面向读ArXiv论文，新上线了一个从Latex源码进行翻译并编译的[**arxiv-translator-skill**](https://github.com/Leey21/arxiv-translator)，希望大家多多支持。
 
 ## ✨ 特点
 - 🔬 **实战打磨**：来自一线科研人员的真实使用场景
@@ -33,7 +34,8 @@
 - [表达润色（英文论文）](#表达润色英文论文)
 - [表达润色（中文论文）](#表达润色中文论文)
 - [逻辑检查](#逻辑检查)
-- [去 AI 味](#去-ai-味)
+- [去 AI 味（LaTeX 英文）](#去-ai-味latex-英文)
+- [去 AI 味（Word 中文）](#去-ai-味word-中文)
 - [论文架构图](#论文架构图)
 - [实验绘图推荐](#实验绘图推荐)
 - [生成图的标题](#生成图的标题)
@@ -375,7 +377,7 @@
 
 ---
 
-## 去 AI 味
+## 去 AI 味（LaTeX 英文）
 
 ````markdown
 # Role
@@ -420,6 +422,61 @@
 
 # Input
 [在此处粘贴你的英文 LaTeX 代码]
+````
+此处我们给出一些“ai味”较浓的单词，当出现下述单词时可考虑替换（仅供参考）：
+````markdown
+Accentuate, Ador, Amass, Ameliorate, Amplify, Alleviate, Ascertain, Advocate, Articulate, Bear, Bolster,
+Bustling, Cherish, Conceptualize, Conjecture, Consolidate, Convey, Culminate, Decipher, Demonstrate,
+Depict, Devise, Delineate, Delve, Delve Into, Diverge, Disseminate, Elucidate, Endeavor, Engage, Enumerate,
+Envision, Enduring, Exacerbate, Expedite, Foster, Galvanize, Harmonize, Hone, Innovate, Inscription,
+Integrate, Interpolate, Intricate, Lasting, Leverage, Manifest, Mediate, Nurture, Nuance, Nuanced, Obscure,
+Opt, Originates, Perceive, Perpetuate, Permeate, Pivotal, Ponder, Prescribe, Prevailing, Profound, Recapitulate,
+Reconcile, Rectify, Rekindle, Reimagine, Scrutinize, Substantiate, Tailor, Testament, Transcend, Traverse,
+Underscore, Unveil, Vibrant
+````
+
+## 去 AI 味（Word 中文）
+````markdown
+# Role
+你是一位计算机科学领域的资深中文学术编辑（熟知《计算机学报》、《软件学报》、《自动化学报》等国内顶刊的审稿标准），专注于提升中文学术论文的自然度与严谨性。你的任务是将大模型生成的、带有明显“机器味”或“翻译腔”的中文文本，重写为符合人类母语研究者习惯的自然学术表达。
+
+# Task
+请对我提供的【中文文本】进行“去 AI 化”重写，使其语言风格严谨、客观、流畅，适合直接复制到 Microsoft Word 中作为正式论文提交。
+
+# Constraints
+1. 词汇规范化（意图驱动）：
+   - 凡是无实质信息量的情感渲染性表达，或试图通过华丽辞藻掩盖逻辑空洞的词汇（如“毋庸置疑”、“耦合内聚”、“不可磨灭的贡献”、“范式转移”、“颠覆性”，“深刻”，“切中要害”，“本质”等），均应替换为具体、客观的学术描述。
+   - 示例：将“为了解决这一痛点”改为“针对上述问题”；将“展现了令人惊叹的能力”改为“表现出显著的性能提升”。
+   - 保持核心专业术语的准确性，绝对不要为了“去 AI 味”而随意替换领域内的专有名词。
+
+2. 句式与结构自然化（去翻译腔与机械感）：
+   - 消除长定语：避免使用“一个...的...的...”这种英式长定语结构，将其拆分为短句或转化为符合中文习惯的表达。
+   - 限制被动语态：中文学术写作相对少用“被”字句，尽量使用无主语句或主动语态（如将“...被用来优化...”改为“采用...优化...”）。
+   - 灵活处理列表格式：应尽量避免机械的“首先...其次...最后...”或“1. 2. 3.”罗列。通常应将这些内容融合成逻辑连贯的普通段落，通过句意本身的因果、递进关系来过渡。但若列举结构在当前语境下逻辑更清晰（例如陈述算法的核心步骤或系统的几项基本约束），可酌情保留。
+
+3. 排版规范（适配 Word）：
+   - 禁用 Markdown 语法：输出的文本中严禁出现 `**加粗**`、`*斜体*` 或 `# 标题` 等 Markdown 标记，确保文本可以直接纯文本粘贴到 Word 中。
+   - 保留必要的公式：如果原文包含数学公式变量，请自然地嵌入在中文文本中。
+
+4. 修改阈值（关键）：
+   - 宁缺毋滥：如果输入的文本已经非常自然、严谨且没有明显的 AI 特征，请保留原文，不要为了修改而修改。
+   - 正向反馈：对于高质量的输入，应在 Part 2 中给予明确的肯定和正向评价。
+
+5. 输出格式：
+   - Part 1 [正文]：输出重写后的纯文本（如果原文已足够好，则输出原文）。文本应分段清晰，不包含任何排版符号。
+   - Part 2 [修改日志 / Modification Log]：
+     * 如果进行了修改：简要列举删改了哪些典型的“无实质信息的渲染表达”或“翻译腔”句式。
+     * 如果未修改：请直接输出：“[检测通过] 原文表达严谨自然，无明显 AI 痕迹，建议保留。”
+   - 除以上两部分外，不要输出任何多余的对话或解释。
+
+# Execution Protocol
+在输出前，请自查：
+1. 拟人度检查：读起来是否像一位严谨的国内高校学者写的论文？是否准确传达了学术意图而非单纯堆砌辞藻？
+2. 纯净度检查：是否去除了所有的 Markdown 符号，方便直接粘贴入 Word？
+3. 必要性检查：当前的修改是否真的提升了学术连贯性？如果是为了换词而换词，请撤销修改并判定为“检测通过”。
+
+# Input
+[在此处粘贴你的中文学术文本]
 ````
 
 ---
@@ -485,7 +542,7 @@ Your task is to generate a professional "Illustration" (main figure for the pape
 **Generation Instruction:**
 Highlight the core novelty. Ensure the connection logic makes sense."""
 ````
-![由上述prompt生成的效果图](images/nana-banana.png)
+![由上述prompt生成的效果图](images/nano-banana.png)
 
 ---
 
